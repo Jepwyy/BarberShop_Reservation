@@ -1,14 +1,24 @@
 const express = require('express')
-const bodyParser = require('body-parser')
-
+const cors = require('cors')
+const mongoose = require('mongoose')
 const app = express()
+
+require('dotenv').config()
+const port = process.env.PORT || 5000
 
 /*Middleware*/
 app.use(express.json())
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors())
 
-const port = 3000
+//connection
+const uri = process.env.ATLAS_URI
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+const db = mongoose.connection
+
+// Bind connection to open event (to get notification of connection successes)
+db.once('open', function () {
+  console.log('MongoDB database connected successfully!')
+})
 
 app.listen(port, () => {
   console.log('Listening on port: ', port)
