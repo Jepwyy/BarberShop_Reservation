@@ -3,21 +3,21 @@ const Schema = mongoose.Schema
 
 const reservationSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: [true, 'Please enter a name'],
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      required: true,
     },
-    description: {
-      type: String,
-      required: [true, 'Please enter a description'],
-      unique: true,
+    haircutId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'haircut',
+      required: true,
     },
-    price: {
-      type: String,
-      required: [true, 'Please enter a price'],
-      min: 8,
+    datetime: {
+      type: Date,
+      default: '',
     },
-    image: {
+    receipt: {
       type: String,
       default: '',
     },
