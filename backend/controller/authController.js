@@ -45,13 +45,9 @@ const userController = {
       }
 
       // Find user by email or username
-      const user = await Users.findOne({
-        $or: [{ email }, { username: email }],
-      })
+      const user = await Users.findOne({ email })
       if (!user) {
-        return res
-          .status(400)
-          .json({ message: 'Email or password is incorrect' })
+        return res.status(400).json({ message: "Email doesn't exist! " })
       }
 
       // Check password
