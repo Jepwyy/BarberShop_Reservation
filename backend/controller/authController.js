@@ -56,12 +56,34 @@ const userController = {
         return res
           .status(400)
           .json({ message: 'Email or password is incorrect' })
+      } else {
+        req.session.user = user
+        res.status(200).json({
+          message: 'Login Successfull',
+          user: req.session.user,
+        })
       }
-
-      res.json({ message: 'Login successful' })
     } catch (err) {
       console.log(err)
-      res.status(500).json({ message: 'Registration failed' })
+      res.status(500).json({ message: 'Login failed' })
+    }
+  },
+  refreshToken: (req, res) => {
+    if (req.session.user) {
+      res.json({ token: true, user: req.session.user })
+    } else {
+      res.json({ token: false })
+    }
+  },
+  logout: (req, res) => {
+    if (req.session) {
+      req.session.destroy((err) => {
+        if (err) {
+          res.status(400).json({ message: 'unable to logout' })
+        } else {
+          res.status(200).json({ message: 'logout successfully' })
+        }
+      })
     }
   },
 }
