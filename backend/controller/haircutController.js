@@ -1,12 +1,6 @@
 const Haircut = require('../model/haircutModel')
-const cloudinary = require('cloudinary').v2
 
-// Configuration
-cloudinary.config({
-  cloud_name: 'dzlvwbkos',
-  api_key: '521159292165238',
-  api_secret: 'GgdXSgJPUDeMFP40JB3R7XIDpwc',
-})
+const cloudinary = require('../config/cloudinaryCon')
 
 const haircutController = {
   createHaircut: async (req, res) => {

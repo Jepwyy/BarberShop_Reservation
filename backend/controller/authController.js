@@ -1,6 +1,60 @@
 const Users = require('../model/authModel')
 const bcrypt = require('bcryptjs')
+const cloudinary = require('../config/cloudinaryCon')
+const { OAuth2Client } = require('google-auth-library')
+//const fetch = require('node-fetch')
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+
 const userController = {
+  googleLogin: async (req, res) => {
+    const { token } = req.body
+
+    try {
+      // Verify Google access token
+      const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      })
+
+      const { name, email, picture } = ticket.getPayload()
+
+      // Check if user already exists
+      const existingUser = await Users.findOne({ email })
+      if (existingUser) {
+        req.session.user = existingUser
+        return res.status(200).json({
+          message: 'Login Successfull',
+          user: req.session.user,
+        })
+      }
+
+      // Upload profile image to Cloudinary
+      const response = await fetch(picture)
+      const buffer = await response.buffer()
+      const result = await cloudinary.uploader.upload(buffer, {
+        public_id: email.split('@')[0],
+        folder: 'profile-images',
+      })
+
+      // Create new user document
+      const newUser = new Users({
+        email,
+        name,
+        avatar: result.secure_url,
+      })
+
+      // Save user to database
+      await newUser.save()
+      req.session.user = newUser
+      res.status(200).json({
+        message: 'Login Successfull',
+        user: req.session.user,
+      })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ message: 'Login failed' })
+    }
+  },
   register: async (req, res) => {
     const { email, name, password } = req.body
 
