@@ -1,5 +1,4 @@
 const Users = require('../model/authModel')
-const User = require('../model/authModel')
 const bcrypt = require('bcryptjs')
 const userController = {
   register: async (req, res) => {
@@ -11,7 +10,7 @@ const userController = {
     }
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email })
+    const existingUser = await Users.findOne({ email })
     if (existingUser) {
       return res.status(400).json({ message: 'Email already registered' })
     }
@@ -34,6 +33,13 @@ const userController = {
     } catch (err) {
       console.log(err)
       res.status(500).json({ message: 'Registration failed' })
+    }
+  },
+  refreshToken: (req, res) => {
+    if (req.session.user) {
+      res.json({ token: true, user: req.session.user })
+    } else {
+      res.json({ token: false })
     }
   },
   login: async (req, res) => {
@@ -68,13 +74,7 @@ const userController = {
       res.status(500).json({ message: 'Login failed' })
     }
   },
-  refreshToken: (req, res) => {
-    if (req.session.user) {
-      res.json({ token: true, user: req.session.user })
-    } else {
-      res.json({ token: false })
-    }
-  },
+
   logout: (req, res) => {
     if (req.session) {
       req.session.destroy((err) => {

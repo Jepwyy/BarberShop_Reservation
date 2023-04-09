@@ -13,7 +13,7 @@ const haircutSchema = new Schema(
       unique: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: [true, 'Please enter a price'],
       min: 8,
     },
