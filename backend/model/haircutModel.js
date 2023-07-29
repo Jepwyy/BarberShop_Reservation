@@ -8,10 +8,7 @@ const haircutSchema = new Schema(
       required: [true, 'Please enter a name'],
       unique: true,
     },
-    description: {
-      type: String,
-      required: [true, 'Please enter a description'],
-    },
+
     price: {
       type: Number,
       required: [true, 'Please enter a price'],

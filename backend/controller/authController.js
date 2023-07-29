@@ -2,6 +2,7 @@ const Users = require('../model/authModel')
 const bcrypt = require('bcryptjs')
 const cloudinary = require('../config/cloudinaryCon')
 const { OAuth2Client } = require('google-auth-library')
+const jwt = require('jsonwebtoken')
 //const fetch = require('node-fetch')
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
@@ -57,33 +58,32 @@ const userController = {
   },
   register: async (req, res) => {
     const { email, name, password } = req.body
-
-    // Validate input
-    if (!email || !name || !password) {
-      return res.status(400).json({ message: 'Please enter all fields' })
-    }
-
-    // Check if user already exists
-    const existingUser = await Users.findOne({ email })
-    if (existingUser) {
-      return res.status(400).json({ message: 'Email already registered' })
-    }
-
-    // Hash and salt password
-    const salt = await bcrypt.genSalt()
-    const hashedPassword = await bcrypt.hash(password, salt)
-
-    // Create new user document
-    const newUser = new Users({
-      email,
-      name,
-      password: hashedPassword,
-    })
-
-    // Save user to database
     try {
+      // Validate input
+      if (!email || !name || !password) {
+        return res.status(400).json({ message: 'Please enter all fields' })
+      }
+
+      // Check if user already exists
+      const existingUser = await Users.findOne({ email })
+      if (existingUser) {
+        return res.status(400).json({ message: 'Email already registered' })
+      }
+
+      // Hash password
+      const hashedPassword = await bcrypt.hash(password, 10)
+
+      // Create new user document
+      const newUser = new Users({
+        email,
+        name,
+        password: hashedPassword,
+      })
+
+      // Save user to database
+
       await newUser.save()
-      res.json({ message: 'Registration successful' })
+      res.status(200).json({ message: 'Registration successful' })
     } catch (err) {
       console.log(err)
       res.status(500).json({ message: 'Registration failed' })
@@ -117,10 +117,15 @@ const userController = {
           .status(400)
           .json({ message: 'Email or password is incorrect' })
       } else {
-        req.session.user = user
+        const token = jwt.sign({ user: user }, process.env.SECRET_KEY, {
+          expiresIn: 60 * 60 * 24 * 30 * 1000,
+        })
+
+        res.cookie('access-token', token)
         res.status(200).json({
           message: 'Login Successfull',
-          user: req.session.user,
+          auth: true,
+          user: user,
         })
       }
     } catch (err) {
@@ -130,15 +135,21 @@ const userController = {
   },
 
   logout: (req, res) => {
-    if (req.session) {
-      req.session.destroy((err) => {
-        if (err) {
-          res.status(400).json({ message: 'unable to logout' })
-        } else {
-          res.status(200).json({ message: 'logout successfully' })
-        }
+    const token = req.cookies['access-token']
+    if (token) {
+      res.clearCookie('access-token')
+      res.status(200).json({
+        message: 'Logout Successfull',
+      })
+    } else {
+      res.status(200).json({
+        message: 'Already Logout',
       })
     }
+  },
+  verify: (req, res) => {
+    const user = req.user
+    res.json({ message: 'Authenticated Successfully!', auth: true, user: user })
   },
 }
 

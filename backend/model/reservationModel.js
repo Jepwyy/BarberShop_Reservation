@@ -15,11 +15,11 @@ const reservationSchema = new Schema(
     },
     datetime: {
       type: Date,
-      default: '',
+      required: true,
     },
     receipt: {
       type: String,
-      default: '',
+      required: true,
     },
   },
   { timestamps: true }

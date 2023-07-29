@@ -1,9 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const session = require('express-session')
 const corsOptions = require('./config/corsOptions')
 const mongoose = require('mongoose')
+
 const app = express()
 
 require('dotenv').config()
@@ -14,17 +14,7 @@ app.use(express.json())
 express.urlencoded({ extended: true })
 app.use(cors(corsOptions))
 app.use(cookieParser())
-app.use(
-  session({
-    key: 'userId',
-    secret: process.env.SESSION_SECRET_KEY,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-    },
-  })
-)
+
 //connection
 const uri = process.env.ATLAS_URI
 mongoose

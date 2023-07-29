@@ -6,7 +6,7 @@ const haircutController = {
   createHaircut: async (req, res) => {
     try {
       const image = req.file
-      const { name, description, price } = req.body
+      const { name, price } = req.body
 
       if (!name || !price) {
         return res.status(400).json({ message: 'Please enter all fields' })
@@ -21,7 +21,6 @@ const haircutController = {
 
         const newHaircut = new Haircut({
           name,
-          description,
           price,
           image: upload.url,
         })
