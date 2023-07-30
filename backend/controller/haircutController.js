@@ -34,6 +34,20 @@ const haircutController = {
       res.status(500).json({ message: 'Haircut failed to add' })
     }
   },
+  viewHaircut: async (req, res) => {
+    try {
+      const haircuts = await Haircut.find({})
+      if (!haircuts) {
+        res.status(400).json({ message: 'No haircuts exist!' })
+      } else {
+        res.status(200).json(haircuts)
+      }
+    } catch (err) {}
+  },
+  deleteHaircut: async (req, res) => {
+    const haircutId = req.params.id
+  },
+  updateHaircut: async (req, res) => {},
 }
 
 module.exports = haircutController
