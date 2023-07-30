@@ -1,17 +1,29 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Login from './pages/Login'
-import Reservation from './pages/client/Reservation'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import HomePage from './pages/client/HomePage'
+import MainLayout from './Layout/mainLayout'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnMount: 'always',
+      },
+    },
+  })
 
   return (
-    <div className='App'>
-      <Reservation />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path='/' element={<HomePage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </QueryClientProvider>
   )
 }
 

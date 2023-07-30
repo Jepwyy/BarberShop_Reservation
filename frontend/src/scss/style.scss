@@ -1,0 +1,9 @@
+// Import all of Bootstrap's CSS
+@import 'bootstrap/scss/bootstrap';
+@import './home';
+@import './layout';
+
+* {
+  margin: 0;
+  padding: 0;
+}
