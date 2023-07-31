@@ -5,9 +5,9 @@ import MainFooter from '../components/MainFooter'
 
 const MainLayout = () => {
   return (
-    <div className=''>
+    <div className='layoutContainer'>
       <MainNavbar />
-      <div>
+      <div className='outlet'>
         <Outlet />
       </div>
       <MainFooter />
