@@ -1,0 +1,222 @@
+.mainContainer {
+  height: 45rem;
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #ddd;
+  }
+  .swiper-pagination-bullet {
+    background-color: #ddd;
+  }
+  .SlideContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .images {
+      width: 100%;
+      filter: blur(2px);
+      filter: brightness(30%);
+    }
+    .items {
+      position: absolute;
+      color: #fff;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      .mainTitle {
+        line-height: 100%;
+        font-weight: 500;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 3.9rem;
+        .move {
+          display: block;
+        }
+        .active {
+          color: #da9d40;
+        }
+      }
+      .subTitle {
+        font-weight: 100;
+        letter-spacing: 4px;
+        text-transform: capitalize;
+        color: #eee;
+        text-align: center;
+        font-size: 1.8rem;
+      }
+      .btnContainer {
+        display: flex;
+        gap: 0.5rem;
+        .bannerBtn {
+          padding: 13px 30px;
+          color: #fff;
+          font-size: 15px;
+          font-weight: 400;
+          text-transform: capitalize;
+          letter-spacing: 2px;
+          display: inline-block;
+          border: 1px solid #fff;
+          background: rgba(255, 255, 255, 0.1);
+          &:hover {
+            color: #da9d40;
+            border: 1px solid #da9d40;
+          }
+        }
+      }
+    }
+  }
+}
+.description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8rem 18%;
+  gap: 3rem;
+  .textLeft {
+    width: 60%;
+    .mainTitle {
+      font-size: 36px;
+      letter-spacing: 1px;
+      line-height: 40px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .subTitle {
+      letter-spacing: 4px;
+      text-transform: capitalize;
+      font-weight: 200;
+      font-size: 30px;
+    }
+    .textBody {
+      font-size: 17px;
+      line-height: 2em;
+      letter-spacing: 1px;
+      color: #707579;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+  }
+  .imgRight {
+    width: 40%;
+  }
+}
+.discount {
+  width: 100%;
+  .discountMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .discountImg {
+      height: 25rem;
+      width: 100%;
+      filter: blur(2px);
+      filter: brightness(30%);
+      object-fit: cover;
+      object-position: center;
+    }
+    .discountContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      position: absolute;
+      .discountTitle {
+        font-size: 3em;
+        letter-spacing: 2px;
+        color: #fff;
+        line-height: 1.4em;
+        font-weight: 200;
+        .down {
+          display: block;
+          text-align: center;
+        }
+      }
+      .discountBtn {
+        font-size: 15px;
+        letter-spacing: 2px;
+        color: #fff;
+        padding: 14px 25px;
+        border: none;
+        background: #da9d40;
+        display: inline-block;
+      }
+    }
+  }
+}
+.facts {
+  display: flex;
+  padding: 4rem 20%;
+  gap: 2rem;
+  flex-direction: column;
+  background: #f6f6f6;
+  .factsTitle {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    line-height: 50px;
+  }
+  .factsContext {
+    font-size: 17px;
+    line-height: 2em;
+    letter-spacing: 1px;
+    color: #707579;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  .factsContainer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    .factsBox {
+      background: #fff;
+      padding: 2em 3em;
+      text-align: center;
+      border-right: 6px solid #f6f6f6;
+      .number {
+        font-size: 25px;
+        margin: 0.5em 0;
+        display: block;
+        font-weight: 600;
+      }
+      .context {
+        text-transform: uppercase;
+        font-size: 18px;
+        letter-spacing: 1px;
+        line-height: 28px;
+        color: #666;
+        font-weight: 400;
+        .next {
+          display: block;
+        }
+      }
+    }
+  }
+}
+.extra {
+  height: 5rem;
+  background: #da9d40;
+  padding: 5rem 18%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .extraTitle {
+    font-size: 1.9em;
+    letter-spacing: 2px;
+    color: #fff;
+    line-height: 1.4em;
+    font-weight: 200;
+  }
+  .extraBtn {
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: #da9d40;
+    padding: 14px 25px;
+    border: none;
+    background: #fff;
+  }
+}

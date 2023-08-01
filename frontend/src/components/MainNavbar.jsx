@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Logo from '../assets/images/LogoLight.png'
+import Logo1 from '../assets/images/LogoDark.png'
 import { NavLink } from 'react-router-dom'
 
 const MainNavbar = () => {
@@ -27,7 +28,7 @@ const MainNavbar = () => {
         scrolled ? 'scrolled' : ''
       }`}
     >
-      <img className='navLogo' src={Logo} alt='logo' />
+      <img className='navLogo' src={scrolled ? Logo1 : Logo} alt='logo' />
 
       <div className='navRight'>
         <NavLink to={'/'} className='links'>
@@ -48,15 +49,15 @@ const MainNavbar = () => {
         <div class='btn-group'>
           <button
             type='button'
-            class='btn btn-primary dropdown-toggle'
+            className='btn btn-primary dropdown-toggle'
             data-bs-toggle='dropdown'
             aria-expanded='false'
           >
             Action
           </button>
-          <ul class='dropdown-menu'>
+          <ul className='dropdown-menu'>
             <li>
-              <a class='dropdown-item' href='#'>
+              <a className='dropdown-item' href='#'>
                 Action
               </a>
             </li>
