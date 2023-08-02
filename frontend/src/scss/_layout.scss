@@ -111,3 +111,23 @@
     font-family: 'Source Sans Pro', sans-serif;
   }
 }
+
+.bannerContainer {
+  .bannerImg {
+    filter: brightness(30%);
+    height: 15rem;
+    width: 100%;
+    object-fit: cover;
+  }
+  .breadcrumb {
+    display: flex;
+    padding: 0.8rem 0 0.8rem 20%;
+    gap: 0.5rem;
+    background: #e9ecef;
+    color: #6c757d;
+    .Link {
+      text-decoration: none;
+      color: #da9d40;
+    }
+  }
+}

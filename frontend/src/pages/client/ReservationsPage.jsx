@@ -1,7 +1,12 @@
 import React from 'react'
-
+import Banner from '../../components/Banner'
 const ReservationsPage = () => {
-  return <div>ReservationsPage</div>
+  const PageName = 'Reservations'
+  return (
+    <div>
+      <Banner PageName={PageName} />
+    </div>
+  )
 }
 
 export default ReservationsPage
