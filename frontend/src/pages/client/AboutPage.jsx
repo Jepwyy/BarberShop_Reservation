@@ -1,12 +1,12 @@
 import React from 'react'
 import Banner from '../../components/Banner'
-import equip from '../../assets/images/items.jpg'
+import equip from '../../assets/images/4.jpg'
 const AboutPage = () => {
   const PageName = 'About Us'
   return (
     <div>
       <Banner PageName={PageName} />
-      <section className='aboutHeader'>
+      <section className='aboutPage'>
         <div className='textLeft'>
           <h2 className='mainTitle'>WELCOME TO BENTONG BARBERSHOP</h2>
           <h2 className='subTitle mt-4'>
@@ -26,6 +26,10 @@ const AboutPage = () => {
           </p>
         </div>
         <img className='imgRight' src={equip} alt='' />
+      </section>
+      <section className='extra'>
+        <h1 className='extraTitle'>A Wide Range Of Male Grooming Services</h1>
+        <button className='extraBtn'>Go To Our Services</button>
       </section>
     </div>
   )

@@ -79,7 +79,7 @@
     }
     .footerDetails {
       display: flex;
-      margin-left: 8.9rem;
+      margin-left: 4.5rem;
       flex-direction: row;
       gap: 1rem;
       font-size: 17px;
@@ -98,6 +98,9 @@
         height: 40px;
         line-height: 40px;
         border-radius: 50%;
+        &:hover {
+          color: #555;
+        }
       }
     }
   }

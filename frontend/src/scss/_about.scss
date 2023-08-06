@@ -1,0 +1,33 @@
+.aboutPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8rem 18%;
+  gap: 3rem;
+  .textLeft {
+    width: 60%;
+    .mainTitle {
+      font-size: 36px;
+      letter-spacing: 1px;
+      line-height: 40px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .subTitle {
+      letter-spacing: 4px;
+      text-transform: capitalize;
+      font-weight: 200;
+      font-size: 30px;
+    }
+    .textBody {
+      font-size: 17px;
+      line-height: 2em;
+      letter-spacing: 1px;
+      color: #707579;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+  }
+  .imgRight {
+    width: 40%;
+  }
+}

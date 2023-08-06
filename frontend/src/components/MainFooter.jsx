@@ -30,7 +30,7 @@ const MainFooter = () => {
               <MdPhone size={20} /> Phone : +639344857354
             </div>
             <div className='d-flex align-items-center gap-2'>
-              <MdMail size={20} /> Email : bentongbarberp@gmail.com
+              <MdMail size={20} /> Email : bentong@gmail.com
             </div>
           </div>
         </div>
