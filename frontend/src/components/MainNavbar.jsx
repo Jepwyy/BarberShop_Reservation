@@ -46,7 +46,7 @@ const MainNavbar = () => {
         <NavLink to={'/reservations'} className='links'>
           Reservations
         </NavLink>
-        <div class='btn-group'>
+        <div className='btn-group'>
           <button
             type='button'
             className='btn btn-primary dropdown-toggle'

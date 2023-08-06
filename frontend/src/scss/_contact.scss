@@ -1,0 +1,110 @@
+$color_1: #777;
+$color_2: #fff;
+$color_3: #da9d40;
+
+.contact {
+  input[type='text'] {
+    display: block;
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 400;
+    color: $color_1;
+    background: #f6f6f6;
+    text-transform: capitalize;
+    background-image: none;
+    letter-spacing: 1px;
+    -webkit-appearance: none;
+    transition: 0.3s ease-in-out;
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
+  input[type='email'] {
+    display: block;
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 400;
+    color: $color_1;
+    background: #f6f6f6;
+    text-transform: capitalize;
+    background-image: none;
+    letter-spacing: 1px;
+    -webkit-appearance: none;
+    transition: 0.3s ease-in-out;
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
+  select {
+    display: block;
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 400;
+    color: $color_1;
+    background: #f6f6f6;
+    text-transform: capitalize;
+    background-image: none;
+    letter-spacing: 1px;
+    -webkit-appearance: none;
+    transition: 0.3s ease-in-out;
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
+  textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 400;
+    color: $color_1;
+    background: #f6f6f6;
+    text-transform: capitalize;
+    background-image: none;
+    letter-spacing: 1px;
+    -webkit-appearance: none;
+    transition: 0.3s ease-in-out;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    height: 150px;
+  }
+  button.btn {
+    background: #da9d40;
+    font-size: 15px;
+    display: inline-block;
+    color: $color_2;
+    border: 2px solid;
+    padding: 13px 40px;
+    letter-spacing: 2px;
+    margin-top: 0px;
+    cursor: pointer;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+  }
+  label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    span.fa {
+      color: $color_3;
+    }
+  }
+}
+.map {
+  iframe {
+    border: none;
+    outline: none;
+    height: 350px;
+    width: 100%;
+  }
+}
