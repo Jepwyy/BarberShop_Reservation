@@ -25,6 +25,7 @@ mongoose
 //routes
 app.use('/auth', require('./routes/authRoute'))
 app.use('/haircut', require('./routes/haircutRoute'))
+app.use('/reserve', require('./routes/reservationRoute'))
 
 app.listen(port, () => {
   console.log('Listening on port: ', port)

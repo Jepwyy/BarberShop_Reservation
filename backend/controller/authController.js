@@ -1,6 +1,5 @@
 const Users = require('../model/authModel')
 const bcrypt = require('bcryptjs')
-const cloudinary = require('../config/cloudinaryCon')
 const jwt = require('jsonwebtoken')
 
 const userController = {
