@@ -3,7 +3,7 @@ import Logo from '../assets/images/LogoLight.png'
 import Logo1 from '../assets/images/LogoDark.png'
 import { NavLink } from 'react-router-dom'
 
-const MainNavbar = () => {
+const MainNavbar = ({ setModal }) => {
   const [scrolled, setScrolled] = useState(false)
 
   // Set the height at which you want to change the background color
@@ -46,7 +46,10 @@ const MainNavbar = () => {
         <NavLink to={'/reservations'} className='links'>
           Reservations
         </NavLink>
-        <div className='btn-group'>
+        <button className='btn btn-primary' onClick={() => setModal(true)}>
+          Login
+        </button>
+        {/* <div className='btn-group'>
           <button
             type='button'
             className='btn btn-primary dropdown-toggle'
@@ -62,7 +65,7 @@ const MainNavbar = () => {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   )

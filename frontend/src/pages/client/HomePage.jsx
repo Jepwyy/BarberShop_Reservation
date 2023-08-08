@@ -113,7 +113,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section class='facts'>
+      <section className='facts'>
         <div className='factsTitle'>Why Choose Us</div>
         <div className='factsContext'>
           At Bentong Barber Shop, we believe that every client's appearance is a

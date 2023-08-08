@@ -6,7 +6,7 @@
   left: 0;
   padding: 2rem;
   transition: background-color 0.3s ease;
-  z-index: 999;
+  z-index: 100;
   .navLogo {
     height: 4rem;
   }
@@ -39,7 +39,7 @@
   left: 0;
   padding: 2rem;
   transition: background-color 0.3s ease;
-  z-index: 999;
+  z-index: 1;
   .navLogo {
     height: 4rem;
   }
@@ -64,6 +64,7 @@
 }
 .outlet {
   min-height: 100vh;
+  position: relative;
 }
 
 .footer {
@@ -132,5 +133,20 @@
       text-decoration: none;
       color: #da9d40;
     }
+  }
+}
+
+.modalBg {
+  position: fixed;
+  height: 100%;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 101;
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+  .modalContainer {
+    background: #fff;
+    border-radius: 0.5rem;
   }
 }

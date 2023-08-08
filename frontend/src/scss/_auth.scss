@@ -1,0 +1,26 @@
+.authContainer {
+  width: 60rem;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  .left {
+    width: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .background {
+      filter: brightness(50%);
+      width: 100%;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+    }
+    .logo {
+      position: absolute;
+      height: 15rem;
+    }
+  }
+  .right {
+    width: 50%;
+  }
+}
