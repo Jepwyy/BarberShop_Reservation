@@ -4,6 +4,7 @@ import Img from '../assets/images/img1.jpg'
 import Logo from '../assets/images/LogoLight.png'
 import Login from './Login'
 import Register from './Register'
+import { MdClose } from 'react-icons/md'
 const Auth = ({ setModal }) => {
   const [active, setActive] = useState('Login')
   return (
@@ -14,22 +15,21 @@ const Auth = ({ setModal }) => {
           <img className='logo' src={Logo} alt='LOGO' />
         </div>
         <div className='right'>
-          <button onClick={() => setModal(false)}>Exit</button>
-          <div className='d-flex'>
-            <button onClick={() => setActive('Login')} className=''>
-              Login
-            </button>
-            <button onClick={() => setActive('Register')} className=''>
-              Register
-            </button>
+          <div className='close'>
+            <MdClose
+              color='#aaaaaa'
+              size={25}
+              onClick={() => setModal(false)}
+            />
           </div>
-          <div>
+
+          <div className='forms'>
             {active === 'Login' ? (
-              <Login />
+              <Login setActive={setActive} />
             ) : active === 'Register' ? (
               <Register setActive={setActive} />
             ) : (
-              <Login />
+              <Login setActive={setActive} />
             )}
           </div>
         </div>
