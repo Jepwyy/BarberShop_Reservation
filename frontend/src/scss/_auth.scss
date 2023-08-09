@@ -37,6 +37,12 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  position: relative;
+
+  .Loader {
+    position: absolute;
+    width: 100%;
+  }
   .btnForms {
     color: #ffffff;
     background: #da9d40;

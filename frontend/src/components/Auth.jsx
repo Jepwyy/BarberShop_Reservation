@@ -25,7 +25,7 @@ const Auth = ({ setModal }) => {
 
           <div className='forms'>
             {active === 'Login' ? (
-              <Login setActive={setActive} />
+              <Login setActive={setActive} setModal={setModal} />
             ) : active === 'Register' ? (
               <Register setActive={setActive} />
             ) : (

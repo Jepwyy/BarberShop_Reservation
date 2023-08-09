@@ -62,7 +62,11 @@ const userController = {
           expiresIn: 60 * 60 * 24 * 30 * 1000,
         })
 
-        res.cookie('access-token', token)
+        res.cookie('access-token', token, {
+          sameSite: 'none',
+          httpOnly: true,
+          secure: true,
+        })
         res.status(200).json({
           message: 'Login Successfull',
           auth: true,
@@ -76,16 +80,19 @@ const userController = {
   },
 
   logout: (req, res) => {
-    const token = req.cookies['access-token']
-    if (token) {
-      res.clearCookie('access-token')
-      res.status(200).json({
-        message: 'Logout Successfull',
+    try {
+      res.clearCookie('access-token', {
+        sameSite: 'none',
+        httpOnly: true,
+        secure: true,
       })
-    } else {
+
       res.status(200).json({
-        message: 'Already Logout',
+        message: 'Logout Successful',
       })
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ message: 'Logout failed' })
     }
   },
   verify: (req, res) => {
