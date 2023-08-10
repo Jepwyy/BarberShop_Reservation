@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Logo from '../assets/images/LogoLight.png'
 import Logo1 from '../assets/images/LogoDark.png'
 import { NavLink } from 'react-router-dom'
-
-const MainNavbar = ({ setModal }) => {
+import { UserAuth } from '../context/authContext'
+const MainNavbar = () => {
   const [scrolled, setScrolled] = useState(false)
+  const { setModal } = UserAuth()
 
   // Set the height at which you want to change the background color
   const scrollTriggerHeight = 100 // Replace 100 with the desired scroll height

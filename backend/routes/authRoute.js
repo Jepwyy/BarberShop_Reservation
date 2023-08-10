@@ -3,7 +3,7 @@ const router = Router()
 const authController = require('../controller/authController')
 const verifyJWT = require('../middlewares/verifyJWT')
 
-router.get('/', verifyJWT, authController.verify)
+router.get('/cookie', verifyJWT, authController.verify)
 router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)

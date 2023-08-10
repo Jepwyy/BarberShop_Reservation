@@ -5,7 +5,9 @@ import Logo from '../assets/images/LogoLight.png'
 import Login from './Login'
 import Register from './Register'
 import { MdClose } from 'react-icons/md'
-const Auth = ({ setModal }) => {
+import { UserAuth } from '../context/authContext'
+const Auth = () => {
+  const { setModal } = UserAuth()
   const [active, setActive] = useState('Login')
   return (
     <Modal>

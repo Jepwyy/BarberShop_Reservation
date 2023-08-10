@@ -58,6 +58,8 @@ const Login = ({ setActive, setModal }) => {
 
       if (data.data.user.role == 'client') {
         navigate('/reservations')
+      } else if (data.data.user.role == 'admin') {
+        navigate('/dashboard')
       }
     },
   })

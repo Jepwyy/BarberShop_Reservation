@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import HomePage from './pages/client/HomePage'
-import MainLayout from './Layout/mainLayout'
 import AboutPage from './pages/client/AboutPage'
 import ServicesPage from './pages/client/ServicesPage'
 import ContactPage from './pages/client/ContactPage'
 import ReservationsPage from './pages/client/ReservationsPage'
+import Dashboard from './pages/admin/Dashboard'
+import MainLayout from './Layout/MainLayout'
+import PersistLogin from './utils/PersistLogin'
+import AuthChecker from './utils/AuthChecker'
 
 function App() {
   const queryClient = new QueryClient({
@@ -22,12 +25,17 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
-          <Route element={<MainLayout />}>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/about' element={<AboutPage />} />
-            <Route path='/services' element={<ServicesPage />} />
-            <Route path='/contact' element={<ContactPage />} />
-            <Route path='/reservations' element={<ReservationsPage />} />
+          <Route element={<PersistLogin />}>
+            <Route element={<AuthChecker />}>
+              <Route element={<MainLayout />}>
+                <Route path='/' element={<HomePage />} />
+                <Route path='/about' element={<AboutPage />} />
+                <Route path='/services' element={<ServicesPage />} />
+                <Route path='/contact' element={<ContactPage />} />
+                <Route path='/reservations' element={<ReservationsPage />} />
+              </Route>
+            </Route>
+            <Route path='/dashboard' element={<Dashboard />} />
           </Route>
         </Routes>
       </Router>
