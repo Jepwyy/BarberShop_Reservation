@@ -10,6 +10,8 @@ import Dashboard from './pages/admin/Dashboard'
 import MainLayout from './Layout/MainLayout'
 import PersistLogin from './utils/PersistLogin'
 import AuthChecker from './utils/AuthChecker'
+import PrivateRouteAdmin from './utils/PrivateRouteAdmin'
+import PrivateRouteClient from './utils/PrivateRouteClient'
 
 function App() {
   const queryClient = new QueryClient({
@@ -32,10 +34,14 @@ function App() {
                 <Route path='/about' element={<AboutPage />} />
                 <Route path='/services' element={<ServicesPage />} />
                 <Route path='/contact' element={<ContactPage />} />
-                <Route path='/reservations' element={<ReservationsPage />} />
+                <Route element={<PrivateRouteClient />}>
+                  <Route path='/reservations' element={<ReservationsPage />} />
+                </Route>
               </Route>
             </Route>
-            <Route path='/dashboard' element={<Dashboard />} />
+            <Route element={<PrivateRouteAdmin />}>
+              <Route path='/dashboard' element={<Dashboard />} />
+            </Route>
           </Route>
         </Routes>
       </Router>

@@ -1,14 +1,58 @@
 import React, { useEffect, useState } from 'react'
 import Logo from '../assets/images/LogoLight.png'
 import Logo1 from '../assets/images/LogoDark.png'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../context/authContext'
+import axios from '../api/api'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import Swal from 'sweetalert2'
+import { useMutation } from 'react-query'
 const MainNavbar = () => {
+  const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
-  const { setModal } = UserAuth()
+  const { setModal, token, user, setToken, setUser } = UserAuth()
 
-  // Set the height at which you want to change the background color
-  const scrollTriggerHeight = 100 // Replace 100 with the desired scroll height
+  const mutation = useMutation({
+    mutationFn: () =>
+      axios.post('/auth/logout', {
+        headers: { 'Content-Type': 'application/json' },
+      }),
+    onError: (error) => {
+      toast.error(`${error.response.data.message}`, {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      })
+    },
+    onSuccess: () => {
+      navigate('/')
+      setUser({})
+      setToken(false)
+    },
+  })
+  const logout = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#000',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Logout',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        mutation.mutate()
+      }
+    })
+  }
+
+  const scrollTriggerHeight = 100
 
   const handleScroll = () => {
     const scrollY = window.scrollY
@@ -44,29 +88,34 @@ const MainNavbar = () => {
         <NavLink to={'/contact'} className='links'>
           Contact
         </NavLink>
-        <NavLink to={'/reservations'} className='links'>
-          Reservations
-        </NavLink>
-        <button className='btn btn-primary' onClick={() => setModal(true)}>
-          Login
-        </button>
-        {/* <div className='btn-group'>
-          <button
-            type='button'
-            className='btn btn-primary dropdown-toggle'
-            data-bs-toggle='dropdown'
-            aria-expanded='false'
-          >
-            Action
+        {token ? (
+          <>
+            <NavLink to={'/reservations'} className='links'>
+              Reservations
+            </NavLink>
+            <div className='btn-group'>
+              <button
+                type='button'
+                className='btn btn-primary dropdown-toggle'
+                data-bs-toggle='dropdown'
+                aria-expanded='false'
+              >
+                Welcome! {user?.name}
+              </button>
+              <ul className='dropdown-menu'>
+                <li>
+                  <a onClick={logout} className='dropdown-item' href='#'>
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </>
+        ) : (
+          <button className='btn btn-primary' onClick={() => setModal(true)}>
+            Login
           </button>
-          <ul className='dropdown-menu'>
-            <li>
-              <a className='dropdown-item' href='#'>
-                Action
-              </a>
-            </li>
-          </ul>
-        </div> */}
+        )}
       </div>
     </div>
   )
