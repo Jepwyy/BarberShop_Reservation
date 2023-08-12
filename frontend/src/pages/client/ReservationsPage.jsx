@@ -1,56 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Banner from '../../components/Banner'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
-import dayjs from 'dayjs'
-
+import Box from '@mui/material/Box'
+import Stepper from '@mui/material/Stepper'
+import Step from '@mui/material/Step'
+import StepLabel from '@mui/material/StepLabel'
+import Button from '@mui/material/Button'
+import SelectDateTime from '../../components/SelectDateTime'
+import { ThemeProvider } from '@mui/material/styles'
+import { createTheme } from '@mui/material/styles'
+const steps = ['Select Time & Data', 'Select Haircut', 'Submit a Receipt']
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#da9d40',
+      contrastText: '#fff',
+    },
+  },
+})
 const ReservationsPage = () => {
   const PageName = 'Reservations'
 
-  // Function to determine if a date should be disabled (past dates)
-  const shouldDisableDate = (date) => {
-    return dayjs(date).isBefore(dayjs(), 'day')
+  const [activeStep, setActiveStep] = useState(0)
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1)
+  }
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
   return (
-    <div>
-      <Banner PageName={PageName} />
+    <ThemeProvider theme={customTheme}>
       <div>
-        <div>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateCalendar
-              defaultValue={dayjs()}
-              shouldDisableDate={shouldDisableDate}
-            />
-          </LocalizationProvider>
-        </div>
-        <div>
-          <div>
-            <h1>Morning</h1>
-            <button>8:00 AM - 8:30 AM</button>
-            <button>8:30 AM - 9:00 AM</button>
-            <button>9:00 AM - 9:30 AM</button>
-            <button>9:30 AM - 10:00 PM</button>
-            <button>10:00 AM - 10:30 AM</button>
-            <button>10:30 AM - 11:00 AM</button>
-            <button>11:00 AM - 11:30 AM</button>
-            <button>11:30 AM - 12:00 PM</button>
-          </div>
-          <div>
-            <h1>Afternoon</h1>
-            <button>1:00 PM - 1:30 PM</button>
-            <button>1:30 PM - 2:00 PM</button>
-            <button>2:00 PM - 2:30 PM</button>
-            <button>2:30 PM - 3:00 PM</button>
-            <button>3:00 PM - 3:30 PM</button>
-            <button>3:30 PM - 4:00 PM</button>
-            <button>4:00 PM - 4:30 PM</button>
-            <button>4:30 PM - 5:00 PM</button>
-          </div>
-        </div>
+        <Banner PageName={PageName} />
+        <Box sx={{ width: '100%', padding: '1.5rem' }}>
+          <Stepper activeStep={activeStep}>
+            {steps.map((label, index) => {
+              return (
+                <Step key={index}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              )
+            })}
+          </Stepper>
+          <div>{activeStep === 0 && <SelectDateTime />}</div>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Button
+              color='inherit'
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+            <Box sx={{ flex: '1 1 auto' }} />
+            <Button onClick={handleNext} disabled={activeStep === 2}>
+              Next
+            </Button>
+          </Box>
+        </Box>
       </div>
-    </div>
+    </ThemeProvider>
   )
 }
 
