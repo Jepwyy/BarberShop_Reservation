@@ -96,7 +96,7 @@ const MainNavbar = () => {
             <div className='btn-group'>
               <button
                 type='button'
-                className='btn btn-primary dropdown-toggle'
+                className='btn btn-nav dropdown-toggle'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
               >
@@ -112,7 +112,7 @@ const MainNavbar = () => {
             </div>
           </>
         ) : (
-          <button className='btn btn-primary' onClick={() => setModal(true)}>
+          <button className='btn btn-nav' onClick={() => setModal(true)}>
             Login
           </button>
         )}
