@@ -9,7 +9,7 @@ const SelectDateTime = () => {
   }
   return (
     <div className='TimeDateContainer'>
-      <div>
+      <div className='left'>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateCalendar
             defaultValue={dayjs()}
@@ -18,28 +18,32 @@ const SelectDateTime = () => {
           />
         </LocalizationProvider>
       </div>
-      <div>
+      <div className='right'>
         <div>
-          <h1>Morning</h1>
-          <button>8:00 AM - 8:30 AM</button>
-          <button>8:30 AM - 9:00 AM</button>
-          <button>9:00 AM - 9:30 AM</button>
-          <button>9:30 AM - 10:00 PM</button>
-          <button>10:00 AM - 10:30 AM</button>
-          <button>10:30 AM - 11:00 AM</button>
-          <button>11:00 AM - 11:30 AM</button>
-          <button>11:30 AM - 12:00 PM</button>
+          <h1 className='title'>Morning</h1>
+          <div className='btnContainer'>
+            <button className='btnTime'>8:00 AM - 8:30 AM</button>
+            <button className='btnTime'>8:30 AM - 9:00 AM</button>
+            <button className='btnTime'>9:00 AM - 9:30 AM</button>
+            <button className='btnTime'>9:30 AM - 10:00 PM</button>
+            <button className='btnTime'>10:00 AM - 10:30 AM</button>
+            <button className='btnTime'>10:30 AM - 11:00 AM</button>
+            <button className='btnTime'>11:00 AM - 11:30 AM</button>
+            <button className='btnTime'>11:30 AM - 12:00 PM</button>
+          </div>
         </div>
         <div>
-          <h1>Afternoon</h1>
-          <button>1:00 PM - 1:30 PM</button>
-          <button>1:30 PM - 2:00 PM</button>
-          <button>2:00 PM - 2:30 PM</button>
-          <button>2:30 PM - 3:00 PM</button>
-          <button>3:00 PM - 3:30 PM</button>
-          <button>3:30 PM - 4:00 PM</button>
-          <button>4:00 PM - 4:30 PM</button>
-          <button>4:30 PM - 5:00 PM</button>
+          <h1 className='title'>Afternoon</h1>
+          <div className='btnContainer'>
+            <button className='btnTime'>1:00 PM - 1:30 PM</button>
+            <button className='btnTime'>1:30 PM - 2:00 PM</button>
+            <button className='btnTime'>2:00 PM - 2:30 PM</button>
+            <button className='btnTime'>2:30 PM - 3:00 PM</button>
+            <button className='btnTime'>3:00 PM - 3:30 PM</button>
+            <button className='btnTime'>3:30 PM - 4:00 PM</button>
+            <button className='btnTime'>4:00 PM - 4:30 PM</button>
+            <button className='btnTime'>4:30 PM - 5:00 PM</button>
+          </div>
         </div>
       </div>
     </div>
