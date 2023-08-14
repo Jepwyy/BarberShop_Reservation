@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 import SelectDateTime from '../../components/SelectDateTime'
 import { ThemeProvider } from '@mui/material/styles'
 import { createTheme } from '@mui/material/styles'
+import SelectHaircut from '../../components/SelectHaircut'
 const steps = ['Select Time & Data', 'Select Haircut', 'Submit a Receipt']
 const customTheme = createTheme({
   palette: {
@@ -44,7 +45,13 @@ const ReservationsPage = () => {
               )
             })}
           </Stepper>
-          <div>{activeStep === 0 && <SelectDateTime />}</div>
+          <div>
+            {activeStep === 0 ? (
+              <SelectDateTime />
+            ) : activeStep === 1 ? (
+              <SelectHaircut />
+            ) : null}
+          </div>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color='inherit'
