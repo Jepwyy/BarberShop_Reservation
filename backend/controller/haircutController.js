@@ -42,7 +42,9 @@ const haircutController = {
       } else {
         res.status(200).json(haircuts)
       }
-    } catch (err) {}
+    } catch (err) {
+      res.status(500).json({ message: "Can't find Haircut" })
+    }
   },
   deleteHaircut: async (req, res) => {
     const haircutId = req.params.id
