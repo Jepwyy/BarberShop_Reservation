@@ -8,16 +8,22 @@ import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 import axios from '../api/api'
+import { UserReserve } from '../context/reserveContext'
 
-const SelectHaircut = () => {
+const SelectHaircut = ({ setActiveStep }) => {
+  const { setHaircut, haircut, setPrice } = UserReserve()
   const { data, isLoading, isError } = useQuery(['haircut'], async () => {
     const response = await axios.get('haircut/view')
     return response.data
   })
-  console.log(data)
+  const handleSelect = (id, price) => {
+    setHaircut(id)
+    setPrice(price)
+    setActiveStep(2)
+  }
+
   return (
     <div className='haircutContainer'>
-      {' '}
       <Swiper
         effect={'coverflow'}
         grabCursor={true}
@@ -34,15 +40,20 @@ const SelectHaircut = () => {
         modules={[EffectCoverflow, Pagination]}
         className='mySwiper'
       >
-        {data.map((haircut) => (
-          <SwiperSlide key={haircut._id}>
+        {data?.map((haircuts) => (
+          <SwiperSlide key={haircuts._id}>
             <div className='cardContainer'>
-              <img className='imgCard' src={haircut.image} />
+              <img className='imgCard' src={haircuts.image} />
 
-              <h1 className='titleCard'>{haircut.name}</h1>
-              <h3 className='priceCard'> &#8369; {haircut.price}</h3>
+              <h1 className='titleCard'>{haircuts.name}</h1>
+              <h3 className='priceCard'> &#8369; {haircuts.price}</h3>
 
-              <button className='btnCard'>Select</button>
+              <button
+                onClick={() => handleSelect(haircuts._id, haircuts.price)}
+                className={`btnCard ${haircut === haircuts._id && 'selected'}`}
+              >
+                Select
+              </button>
             </div>
           </SwiperSlide>
         ))}

@@ -30,6 +30,9 @@
         border: none;
         border-radius: 5px;
       }
+      .selected {
+        background: #a87830;
+      }
     }
   }
 }
@@ -85,5 +88,15 @@
 
       border-radius: 0 0 8px 8px;
     }
+    .selected {
+      background: #966b2a;
+    }
+  }
+}
+.recieptContainer {
+  height: 30rem;
+  padding-top: 2rem;
+  .recieptQr {
+    height: 15rem;
   }
 }

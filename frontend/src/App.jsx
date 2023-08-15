@@ -12,6 +12,7 @@ import PersistLogin from './utils/PersistLogin'
 import AuthChecker from './utils/AuthChecker'
 import PrivateRouteAdmin from './utils/PrivateRouteAdmin'
 import PrivateRouteClient from './utils/PrivateRouteClient'
+import { ReserveContextProvider } from './context/reserveContext'
 
 function App() {
   const queryClient = new QueryClient({
@@ -35,7 +36,14 @@ function App() {
                 <Route path='/services' element={<ServicesPage />} />
                 <Route path='/contact' element={<ContactPage />} />
                 <Route element={<PrivateRouteClient />}>
-                  <Route path='/reservations' element={<ReservationsPage />} />
+                  <Route
+                    path='/reservations'
+                    element={
+                      <ReserveContextProvider>
+                        <ReservationsPage />
+                      </ReserveContextProvider>
+                    }
+                  />
                 </Route>
               </Route>
             </Route>
