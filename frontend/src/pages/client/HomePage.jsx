@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import banner1 from '../../assets/images/banner1.jpg'
 import banner2 from '../../assets/images/banner2.jpg'
 import banner3 from '../../assets/images/banner4.jpg'
-import equipment from '../../assets/images/items.jpg'
+import equipment from '../../assets/images/Items.jpg'
 import { RxScissors } from 'react-icons/rx'
 import { BsTrophyFill, BsEmojiSmile } from 'react-icons/bs'
 // Import Swiper styles
