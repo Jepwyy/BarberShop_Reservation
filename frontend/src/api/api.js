@@ -1,6 +1,6 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'http://localhost:3001/',
+  baseURL: 'https://barber-shop-backend-reservation.vercel.app/',
   withCredentials: true,
 })
