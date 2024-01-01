@@ -161,3 +161,34 @@
     border-radius: 0.5rem;
   }
 }
+
+@mixin minWidth {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+.d-desktop {
+  display: none;
+
+  @include minWidth {
+    display: block;
+  }
+}
+@mixin maxWidth {
+  @media (max-width: 1280px) {
+    @content;
+  }
+}
+.d-mobile {
+  display: none;
+
+  @include maxWidth {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding: 0 3rem;
+  }
+}
